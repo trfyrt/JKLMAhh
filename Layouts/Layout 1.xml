@@ -312,12 +312,40 @@
                         <hotspotY>0</hotspotY>
                     </world>
                 </instance>
+                <instance type="TxtTotalDamage" uid="16">
+                    <properties>
+                        <text>Text</text>
+                        <initial-visibility>Visible</initial-visibility>
+                        <font>Arial,-32,700,0</font>
+                        <color>0,0,0</color>
+                        <horizontal-alignment>Right</horizontal-alignment>
+                        <vertical-alignment>Top</vertical-alignment>
+                        <hotspot>Top-left</hotspot>
+                        <wrapping>Word</wrapping>
+                        <line-height>0</line-height>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>653</x>
+                        <y>101</y>
+                        <z>0</z>
+                        <width>196</width>
+                        <height>51</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
             </instances>
             <effects />
         </layer>
     </layers>
     <nonworld-instances>
         <instance type="WordDict" uid="5" />
+        <instance type="UsedWordDict" uid="15" />
     </nonworld-instances>
     <effects />
 </c2layout>

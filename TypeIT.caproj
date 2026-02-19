@@ -113,6 +113,12 @@
         <object-type name="ComboBar" sid="948135083533376">
             <plugin id="progressbar" />
         </object-type>
+        <object-type global="1" name="UsedWordDict" sid="720401851395042">
+            <plugin id="Dictionary" />
+        </object-type>
+        <object-type name="TxtTotalDamage" sid="368752952098809">
+            <plugin id="Text" />
+        </object-type>
     </object-folder>
     <families />
     <layout-folder>
