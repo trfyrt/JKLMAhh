@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Event sheet 1</name>
+    <events>
+        <variable constant="0" name="damageDealt" sid="107878559824991" static="0" type="number">0</variable>
+        <variable comment="Player&apos;s HP" constant="0" name="playerHP" sid="674952055738471" static="0" type="number">100</variable>
+        <variable constant="0" name="tempWord" sid="410907642880189" static="0" type="text"></variable>
+        <variable constant="0" name="requiredLetters" sid="786098257840862" static="0" type="text"></variable>
+        <event-block sid="467452051622171">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="756218796810873" type="System" />
+            </conditions>
+            <actions>
+                <action id="1" name="Request project file" sid="719628382582163" type="AJAX">
+                    <param id="0" name="Tag">&quot;loadDict&quot;</param>
+                    <param id="1" name="File">dictionary.json</param>
+                </action>
+                <action id="-10" name="Set value" sid="987185829988540" type="Enemy">
+                    <param id="0" name="Instance variable">HP</param>
+                    <param id="1" name="Value">100</param>
+                </action>
+                <action id="0" name="Set text" sid="264545064783518" type="TxtEnemyHP">
+                    <param id="0" name="Text">Enemy.HP</param>
+                </action>
+                <action id="0" name="Set text" sid="631767094192708" type="TxtPlayerHP">
+                    <param id="0" name="Text">playerHP</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="954386205108401">
+            <conditions>
+                <condition id="0" name="On completed" sid="250693527014461" type="AJAX">
+                    <param id="0" name="Tag">&quot;loadDict&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="4" name="Load" sid="499275314767982" type="WordDict">
+                    <param id="0" name="JSON">AJAX.LastData</param>
+                </action>
+                <action id="0" name="Call function" sid="328802279602024" type="Function">
+                    <param id="0" name="Name">&quot;GenerateRound&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+                <action disabled="1" id="0" name="Alert" sid="646303549276525" type="Browser">
+                    <param id="0" name="Message">WordDict.KeyCount</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="353888891635347">
+            <conditions>
+                <condition id="0" name="On function" sid="227481048676179" type="Function">
+                    <param id="0" name="Name">&quot;GenerateRound&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="919582096080203" type="System">
+                    <param id="0" name="Variable">requiredLetters</param>
+                    <param id="1" name="Value">choose(&quot;ka&quot;,&quot;ma&quot;,&quot;an&quot;,&quot;la&quot;,&quot;ra&quot;,&quot;ta&quot;)</param>
+                </action>
+                <action id="0" name="Set text" sid="818306258004667" type="TxtLetters">
+                    <param id="0" name="Text">requiredLetters</param>
+                </action>
+                <action id="0" name="Set text" sid="578582343712539" type="TxtEnemyHP">
+                    <param id="0" name="Text">Enemy.HP</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="160853322381019">
+            <conditions>
+                <condition id="0" name="On function" sid="798723742912344" type="Function">
+                    <param id="0" name="Name">&quot;HitEnemy&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-12" name="Subtract from" sid="797358281945409" type="Enemy">
+                    <param id="0" name="Instance variable">HP</param>
+                    <param id="1" name="Value">damageDealt</param>
+                </action>
+                <action id="-16" name="Set opacity" sid="339027114010460" type="Enemy">
+                    <param id="0" name="Opacity">0</param>
+                </action>
+                <action id="-16" name="Set opacity" sid="664584121864566" type="Enemy">
+                    <param id="0" name="Opacity">100</param>
+                </action>
+                <action id="-3" name="Create object" sid="363770102823268" type="System">
+                    <param id="0" name="Object to create">TxtDamageDealt</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="X">Enemy.X+random(-150,150)</param>
+                    <param id="3" name="Y">Enemy.Y+random(-100, 100)</param>
+                </action>
+                <action id="0" name="Set text" sid="151286771527454" type="TxtDamageDealt">
+                    <param id="0" name="Text">&quot;-&quot; &amp; damageDealt</param>
+                </action>
+                <action behavior="Bullet" id="3" name="Set angle of motion" sid="766426315617467" type="TxtDamageDealt">
+                    <param id="0" name="Angle">270</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="628803009692490">
+            <conditions>
+                <condition id="0" name="On key pressed" sid="345981080283694" type="Keyboard">
+                    <param id="0" name="Key">13</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="778053801091472" type="System">
+                    <param id="0" name="Variable">tempWord</param>
+                    <param id="1" name="Value">lowercase(InputBox.Text)</param>
+                </action>
+                <action id="0" name="Call function" sid="113554658216100" type="Function">
+                    <param id="0" name="Name">&quot;CalculateDamage&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+                <action id="0" name="Set text" sid="844960444634924" type="InputBox">
+                    <param id="0" name="Text">&quot;&quot;</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="304720050704566">
+                    <conditions>
+                        <condition id="3" name="Has key" sid="989292166174928" type="WordDict">
+                            <param id="0" name="Key">tempWord</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="378147663471805">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="893197792881023" type="System">
+                                    <param id="0" name="First value">find(tempWord, requiredLetters)</param>
+                                    <param id="1" name="Comparison">5</param>
+                                    <param id="2" name="Second value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" sid="837091759353351" type="TxtFeedback">
+                                    <param id="0" name="Text">&quot;BENAR&quot;</param>
+                                </action>
+                                <action id="0" name="Call function" sid="324311026626775" type="Function">
+                                    <param id="0" name="Name">&quot;HitEnemy&quot;</param>
+                                    <param id="1" name="Parameter {n}"></param>
+                                </action>
+                                <action id="0" name="Call function" sid="326441615450149" type="Function">
+                                    <param id="0" name="Name">&quot;GenerateRound&quot;</param>
+                                    <param id="1" name="Parameter {n}"></param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="574730817916283">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="536388443393541" type="Enemy">
+                                            <param id="0" name="Instance variable">HP</param>
+                                            <param id="1" name="Comparison">3</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Set text" sid="274775721287095" type="TxtFeedback">
+                                            <param id="0" name="Text">&quot;You&apos;ve Won&quot;</param>
+                                        </action>
+                                        <action id="-10" name="Set value" sid="473587632774286" type="Enemy">
+                                            <param id="0" name="Instance variable">HP</param>
+                                            <param id="1" name="Value">100</param>
+                                        </action>
+                                        <action id="0" name="Set text" sid="603176893427544" type="TxtEnemyHP">
+                                            <param id="0" name="Text">Enemy.HP</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="583212132805703">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="396257438581560" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" sid="459201965988576" type="TxtFeedback">
+                                    <param id="0" name="Text">&quot;TIDAK ADA HURUF&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="632286655637846">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="140787607906044" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" sid="355724270059953" type="TxtFeedback">
+                            <param id="0" name="Text">&quot;TIDAK DITEMUKAN&quot;</param>
+                        </action>
+                        <action id="-11" name="Subtract from" sid="610775938755582" type="System">
+                            <param id="0" name="Variable">playerHP</param>
+                            <param id="1" name="Value">round(len(tempWord)/2)</param>
+                        </action>
+                        <action id="0" name="Set text" sid="956570779595785" type="TxtPlayerHP">
+                            <param id="0" name="Text">playerHP</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="277445710938723">
+            <conditions>
+                <condition id="0" name="On function" sid="152836397475241" type="Function">
+                    <param id="0" name="Name">&quot;CalculateDamage&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="709565511932929" type="System">
+                    <param id="0" name="Variable">damageDealt</param>
+                    <param id="1" name="Value">len(tempWord)</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>
