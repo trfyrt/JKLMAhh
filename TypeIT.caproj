@@ -78,6 +78,7 @@
             <plugin id="Sprite" />
             <instance-variables>
                 <instance-variable name="HP" sid="983414030671741" type="number" />
+                <instance-variable name="isPoisoned" sid="332800682763866" type="boolean" />
             </instance-variables>
             <animation-folder>
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="801873469299510" speed="5">
@@ -102,7 +103,10 @@
                 </behavior-type>
             </behaviors>
         </object-type>
-        <object-type name="Text" sid="327212548113417">
+        <object-type name="Guide" sid="327212548113417">
+            <plugin id="Text" />
+        </object-type>
+        <object-type name="TxtCombo" sid="783946115048898">
             <plugin id="Text" />
         </object-type>
     </object-folder>

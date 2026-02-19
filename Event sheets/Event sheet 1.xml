@@ -3,6 +3,7 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Event sheet 1</name>
     <events>
+        <variable constant="0" name="comboMult" sid="370298084383580" static="0" type="number">0</variable>
         <variable constant="0" name="damageDealt" sid="107878559824991" static="0" type="number">0</variable>
         <variable comment="Player&apos;s HP" constant="0" name="playerHP" sid="674952055738471" static="0" type="number">100</variable>
         <variable constant="0" name="tempWord" sid="410907642880189" static="0" type="text"></variable>
@@ -56,13 +57,16 @@
             <actions>
                 <action id="-9" name="Set value" sid="919582096080203" type="System">
                     <param id="0" name="Variable">requiredLetters</param>
-                    <param id="1" name="Value">choose(&quot;ka&quot;,&quot;ma&quot;,&quot;an&quot;,&quot;la&quot;,&quot;ra&quot;,&quot;ta&quot;)</param>
+                    <param id="1" name="Value">choose(&quot;ka&quot;,&quot;ma&quot;,&quot;an&quot;,&quot;la&quot;,&quot;ra&quot;,&quot;ta&quot;,&quot;ch&quot;,&quot;fu&quot;)</param>
                 </action>
                 <action id="0" name="Set text" sid="818306258004667" type="TxtLetters">
                     <param id="0" name="Text">requiredLetters</param>
                 </action>
                 <action id="0" name="Set text" sid="578582343712539" type="TxtEnemyHP">
                     <param id="0" name="Text">Enemy.HP</param>
+                </action>
+                <action id="0" name="Set text" sid="879234552170514" type="TxtCombo">
+                    <param id="0" name="Text">comboMult</param>
                 </action>
             </actions>
         </event-block>
@@ -73,6 +77,10 @@
                 </condition>
             </conditions>
             <actions>
+                <action id="0" name="Call function" sid="113554658216100" type="Function">
+                    <param id="0" name="Name">&quot;CalculateDamage&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
                 <action id="-12" name="Subtract from" sid="797358281945409" type="Enemy">
                     <param id="0" name="Instance variable">HP</param>
                     <param id="1" name="Value">damageDealt</param>
@@ -97,6 +105,22 @@
                 </action>
             </actions>
         </event-block>
+        <event-block sid="319364296154503">
+            <conditions>
+                <condition id="0" name="On function" sid="251309339228339" type="Function">
+                    <param id="0" name="Name">&quot;HitPlayer&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-11" name="Subtract from" sid="610775938755582" type="System">
+                    <param id="0" name="Variable">playerHP</param>
+                    <param id="1" name="Value">round(len(tempWord)/2)</param>
+                </action>
+                <action id="0" name="Set text" sid="956570779595785" type="TxtPlayerHP">
+                    <param id="0" name="Text">playerHP</param>
+                </action>
+            </actions>
+        </event-block>
         <event-block sid="628803009692490">
             <conditions>
                 <condition id="0" name="On key pressed" sid="345981080283694" type="Keyboard">
@@ -107,10 +131,6 @@
                 <action id="-9" name="Set value" sid="778053801091472" type="System">
                     <param id="0" name="Variable">tempWord</param>
                     <param id="1" name="Value">lowercase(InputBox.Text)</param>
-                </action>
-                <action id="0" name="Call function" sid="113554658216100" type="Function">
-                    <param id="0" name="Name">&quot;CalculateDamage&quot;</param>
-                    <param id="1" name="Parameter {n}"></param>
                 </action>
                 <action id="0" name="Set text" sid="844960444634924" type="InputBox">
                     <param id="0" name="Text">&quot;&quot;</param>
@@ -190,12 +210,13 @@
                         <action id="0" name="Set text" sid="355724270059953" type="TxtFeedback">
                             <param id="0" name="Text">&quot;TIDAK DITEMUKAN&quot;</param>
                         </action>
-                        <action id="-11" name="Subtract from" sid="610775938755582" type="System">
-                            <param id="0" name="Variable">playerHP</param>
-                            <param id="1" name="Value">round(len(tempWord)/2)</param>
+                        <action id="0" name="Call function" sid="798962886350160" type="Function">
+                            <param id="0" name="Name">&quot;HitPlayer&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
                         </action>
-                        <action id="0" name="Set text" sid="956570779595785" type="TxtPlayerHP">
-                            <param id="0" name="Text">playerHP</param>
+                        <action id="-9" name="Set value" sid="792824160619181" type="System">
+                            <param id="0" name="Variable">comboMult</param>
+                            <param id="1" name="Value">0</param>
                         </action>
                     </actions>
                 </event-block>
@@ -208,11 +229,22 @@
                 </condition>
             </conditions>
             <actions>
+                <action id="-10" name="Add to" sid="579382877439996" type="System">
+                    <param id="0" name="Variable">comboMult</param>
+                    <param id="1" name="Value">1</param>
+                </action>
                 <action id="-9" name="Set value" sid="709565511932929" type="System">
                     <param id="0" name="Variable">damageDealt</param>
-                    <param id="1" name="Value">len(tempWord)</param>
+                    <param id="1" name="Value">comboMult*len(tempWord)</param>
+                </action>
+                <action id="0" name="Set text" sid="311291710246313" type="TxtCombo">
+                    <param id="0" name="Text">&quot;x&quot;&amp;comboMult</param>
                 </action>
             </actions>
+        </event-block>
+        <event-block sid="991061535701505">
+            <conditions />
+            <actions />
         </event-block>
     </events>
 </c2eventsheet>

@@ -118,6 +118,7 @@
                     </properties>
                     <instance-variables>
                         <HP>100</HP>
+                        <isPoisoned>false</isPoisoned>
                     </instance-variables>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -236,7 +237,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="Text" uid="12">
+                <instance type="Guide" uid="12">
                     <properties>
                         <text>PRESS &quot;ENTER&quot; or &quot;SPACE&quot; to submit</text>
                         <initial-visibility>Visible</initial-visibility>
@@ -256,6 +257,33 @@
                         <z>0</z>
                         <width>303</width>
                         <height>30</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="TxtCombo" uid="13">
+                    <properties>
+                        <text></text>
+                        <initial-visibility>Visible</initial-visibility>
+                        <font>Arial,-37,400,0</font>
+                        <color>0,0,255</color>
+                        <horizontal-alignment>Center</horizontal-alignment>
+                        <vertical-alignment>Center</vertical-alignment>
+                        <hotspot>Top-left</hotspot>
+                        <wrapping>Word</wrapping>
+                        <line-height>0</line-height>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>742</x>
+                        <y>12</y>
+                        <z>0</z>
+                        <width>108</width>
+                        <height>58</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>
