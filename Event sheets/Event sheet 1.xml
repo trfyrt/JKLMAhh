@@ -3,7 +3,10 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Event sheet 1</name>
     <events>
-        <variable constant="0" name="comboMult" sid="370298084383580" static="0" type="number">0</variable>
+        <variable constant="0" name="usedWord" sid="414068479890333" static="0" type="text"></variable>
+        <variable constant="0" name="ComboMaxtime" sid="198395257047942" static="0" type="number">5</variable>
+        <variable comment="Combo time limit" constant="0" name="comboTimer" sid="531218001240322" static="0" type="number">0</variable>
+        <variable constant="0" name="comboCount" sid="370298084383580" static="0" type="number">0</variable>
         <variable constant="0" name="damageDealt" sid="107878559824991" static="0" type="number">0</variable>
         <variable comment="Player&apos;s HP" constant="0" name="playerHP" sid="674952055738471" static="0" type="number">100</variable>
         <variable constant="0" name="tempWord" sid="410907642880189" static="0" type="text"></variable>
@@ -66,7 +69,7 @@
                     <param id="0" name="Text">Enemy.HP</param>
                 </action>
                 <action id="0" name="Set text" sid="879234552170514" type="TxtCombo">
-                    <param id="0" name="Text">comboMult</param>
+                    <param id="0" name="Text">&quot;x&quot;&amp;comboCount</param>
                 </action>
             </actions>
         </event-block>
@@ -215,8 +218,11 @@
                             <param id="1" name="Parameter {n}"></param>
                         </action>
                         <action id="-9" name="Set value" sid="792824160619181" type="System">
-                            <param id="0" name="Variable">comboMult</param>
+                            <param id="0" name="Variable">comboCount</param>
                             <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="0" name="Set text" sid="175673922994015" type="TxtCombo">
+                            <param id="0" name="Text">&quot;x&quot;&amp;comboCount</param>
                         </action>
                     </actions>
                 </event-block>
@@ -230,21 +236,57 @@
             </conditions>
             <actions>
                 <action id="-10" name="Add to" sid="579382877439996" type="System">
-                    <param id="0" name="Variable">comboMult</param>
+                    <param id="0" name="Variable">comboCount</param>
                     <param id="1" name="Value">1</param>
+                </action>
+                <action id="-9" name="Set value" sid="406474714816541" type="System">
+                    <param id="0" name="Variable">comboTimer</param>
+                    <param id="1" name="Value">ComboMaxtime</param>
                 </action>
                 <action id="-9" name="Set value" sid="709565511932929" type="System">
                     <param id="0" name="Variable">damageDealt</param>
-                    <param id="1" name="Value">comboMult*len(tempWord)</param>
+                    <param id="1" name="Value">comboCount*len(tempWord)</param>
                 </action>
                 <action id="0" name="Set text" sid="311291710246313" type="TxtCombo">
-                    <param id="0" name="Text">&quot;x&quot;&amp;comboMult</param>
+                    <param id="0" name="Text">&quot;x&quot;&amp;comboCount</param>
                 </action>
             </actions>
         </event-block>
         <event-block sid="991061535701505">
-            <conditions />
-            <actions />
+            <conditions>
+                <condition id="-1" name="Every tick" sid="710687993331464" type="System" />
+            </conditions>
+            <actions>
+                <action id="-11" name="Subtract from" sid="719856645456591" type="System">
+                    <param id="0" name="Variable">comboTimer</param>
+                    <param id="1" name="Value">dt</param>
+                </action>
+                <action id="3" name="Set progress" sid="770362066716032" type="ComboBar">
+                    <param id="0" name="Value">comboTimer</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="486099406145572">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="494387546642722" type="System">
+                    <param id="0" name="Variable">comboTimer</param>
+                    <param id="1" name="Comparison">2</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="782239608284265" type="System">
+                    <param id="0" name="Variable">comboTimer</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="796929889746635" type="System">
+                    <param id="0" name="Variable">comboCount</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="0" name="Set text" sid="622019914912793" type="TxtCombo">
+                    <param id="0" name="Text">&quot;x&quot;&amp;comboCount</param>
+                </action>
+            </actions>
         </event-block>
     </events>
 </c2eventsheet>

@@ -18,6 +18,7 @@
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
         <plugin author="Scirra" id="Text" version="1">Text</plugin>
         <plugin author="Scirra" id="TextBox" version="1">Text box</plugin>
+        <plugin author="Scirra" id="progressbar" version="1">Progress bar</plugin>
     </used-plugins>
     <used-behaviors>
         <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
@@ -108,6 +109,9 @@
         </object-type>
         <object-type name="TxtCombo" sid="783946115048898">
             <plugin id="Text" />
+        </object-type>
+        <object-type name="ComboBar" sid="948135083533376">
+            <plugin id="progressbar" />
         </object-type>
     </object-folder>
     <families />
