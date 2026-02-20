@@ -152,6 +152,24 @@
                 <action id="0" name="Set text" sid="131458639128011" type="TxtTotalDamage">
                     <param id="0" name="Text">totalDamage</param>
                 </action>
+                <action id="3" name="Clear" sid="183901728597765" type="UsedWordDict" />
+            </actions>
+        </event-block>
+        <event-block sid="538424070362656">
+            <conditions>
+                <condition id="0" name="On function" sid="492719591157150" type="Function">
+                    <param id="0" name="Name">&quot;AtkFail&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Call function" sid="731830571920734" type="Function">
+                    <param id="0" name="Name">&quot;HitPlayer&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+                <action id="0" name="Call function" sid="303696564633247" type="Function">
+                    <param id="0" name="Name">&quot;ComboReset&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
             </actions>
         </event-block>
         <event-block sid="628803009692490">
@@ -186,20 +204,46 @@
                                     <param id="2" name="Second value">0</param>
                                 </condition>
                             </conditions>
-                            <actions>
-                                <action id="0" name="Set text" sid="837091759353351" type="TxtFeedback">
-                                    <param id="0" name="Text">&quot;BENAR&quot;</param>
-                                </action>
-                                <action id="0" name="Call function" sid="324311026626775" type="Function">
-                                    <param id="0" name="Name">&quot;HitEnemy&quot;</param>
-                                    <param id="1" name="Parameter {n}"></param>
-                                </action>
-                                <action id="0" name="Call function" sid="326441615450149" type="Function">
-                                    <param id="0" name="Name">&quot;GenerateRound&quot;</param>
-                                    <param id="1" name="Parameter {n}"></param>
-                                </action>
-                            </actions>
+                            <actions />
                             <sub-events>
+                                <event-block sid="858807773804435">
+                                    <conditions>
+                                        <condition id="3" name="Has key" sid="216320531108757" type="UsedWordDict">
+                                            <param id="0" name="Key">tempWord</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Set text" sid="254558678879302" type="TxtFeedback">
+                                            <param id="0" name="Text">&quot;KATA SUDAH DIGUNAKAN&quot;</param>
+                                        </action>
+                                        <action id="0" name="Call function" sid="110311578958235" type="Function">
+                                            <param id="0" name="Name">&quot;AtkFail&quot;</param>
+                                            <param id="1" name="Parameter {n}"></param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="741285409930783">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="957471590232444" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Set text" sid="837091759353351" type="TxtFeedback">
+                                            <param id="0" name="Text">&quot;BENAR&quot;</param>
+                                        </action>
+                                        <action id="0" name="Call function" sid="324311026626775" type="Function">
+                                            <param id="0" name="Name">&quot;HitEnemy&quot;</param>
+                                            <param id="1" name="Parameter {n}"></param>
+                                        </action>
+                                        <action id="0" name="Call function" sid="326441615450149" type="Function">
+                                            <param id="0" name="Name">&quot;GenerateRound&quot;</param>
+                                            <param id="1" name="Parameter {n}"></param>
+                                        </action>
+                                        <action id="0" name="Add key" sid="332378975417619" type="UsedWordDict">
+                                            <param id="0" name="Key">tempWord</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
                                 <event-block sid="574730817916283">
                                     <conditions>
                                         <condition id="-7" name="Compare instance variable" sid="536388443393541" type="Enemy">
@@ -243,12 +287,8 @@
                         <action id="0" name="Set text" sid="355724270059953" type="TxtFeedback">
                             <param id="0" name="Text">&quot;TIDAK DITEMUKAN&quot;</param>
                         </action>
-                        <action id="0" name="Call function" sid="798962886350160" type="Function">
-                            <param id="0" name="Name">&quot;HitPlayer&quot;</param>
-                            <param id="1" name="Parameter {n}"></param>
-                        </action>
-                        <action id="0" name="Call function" sid="760308166386870" type="Function">
-                            <param id="0" name="Name">&quot;ComboReset&quot;</param>
+                        <action id="0" name="Call function" sid="587758050020904" type="Function">
+                            <param id="0" name="Name">&quot;AtkFail&quot;</param>
                             <param id="1" name="Parameter {n}"></param>
                         </action>
                     </actions>
