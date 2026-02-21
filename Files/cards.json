@@ -1,0 +1,55 @@
+{
+  "c2dictionary": true,
+  "data": {
+    "vowel_multiplier": {
+      "id": "vowel_multiplier",
+      "trigger": ["on_word_submit"],
+      "effect": {
+        "type": "dynamic_multiplier",
+        "metric": "vowel_count",
+        "scale": 0.005
+      }
+    },
+    "short_word_specialist": {
+      "id": "short_word_specialist",
+      "trigger": ["on_word_submit"],
+      "effect": {
+        "type": "length_modifier",
+        "less_than": 5,
+        "bonus": 0.25,
+        "greater_than": 5,
+        "penalty": 0.15
+      }
+    },
+    "long_word_master": {
+      "id": "long_word_master",
+      "trigger": ["on_word_submit"],
+      "effect": {
+        "type": "length_modifier",
+        "greater_than": 5,
+        "bonus": 0.25,
+        "less_than": 5,
+        "penalty": 0.15
+      }
+    },
+    "hard_r_pass": {
+      "id": "hard_r_pass",
+      "trigger": ["on_word_submit"],
+      "effect": {
+        "type": "word_ending_bonus",
+        "character": "r",
+        "bonus": 0.2
+      }
+    },
+    "toxic_vocab": {
+      "id": "toxic_vocab",
+      "trigger": ["on_word_submit"],
+      "effect": {
+        "type": "apply_status_if_word_tag",
+        "tag": "profanity",
+        "status": "poison",
+        "duration": 3
+      }
+    }
+  }
+}

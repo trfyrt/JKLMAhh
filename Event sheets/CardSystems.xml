@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>CardSystems</name>
+    <events>
+        <variable constant="0" name="damageMult" sid="641644612511821" static="0" type="number">1</variable>
+        <variable constant="0" name="bonusDamage" sid="162511660067451" static="0" type="number">0</variable>
+        <event-block sid="705331115844122">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="981292364516920" type="System" />
+            </conditions>
+            <actions>
+                <action id="60" name="LoadJSON" sid="345669735655654" type="CardDB">
+                    <param id="0" name="JSON">&quot;cards.json&quot;</param>
+                    <param id="1" name="Reference point">0</param>
+                    <param id="2" name="Key {n}"></param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="806380923606106">
+            <conditions>
+                <condition id="0" name="On function" sid="766500667875800" type="Function">
+                    <param id="0" name="Name">&quot;ProcessCardTrigger&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+        </event-block>
+        <event-block sid="403629768850958">
+            <conditions>
+                <condition id="-12" name="Repeat" sid="414197402085394" type="System">
+                    <param id="0" name="Count">ActiveCards.Width</param>
+                </condition>
+            </conditions>
+            <actions />
+        </event-block>
+    </events>
+</c2eventsheet>

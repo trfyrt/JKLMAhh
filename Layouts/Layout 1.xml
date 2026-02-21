@@ -2,7 +2,7 @@
 <c2layout>
     <name>Layout 1</name>
     <sid>812486728799044</sid>
-    <event-sheet>Event sheet 1</event-sheet>
+    <event-sheet>Gameplay</event-sheet>
     <size>
         <width>1708</width>
         <height>960</height>
@@ -346,6 +346,15 @@
     <nonworld-instances>
         <instance type="WordDict" uid="5" />
         <instance type="UsedWordDict" uid="15" />
+        <instance type="PlayerCardDict" uid="17" />
+        <instance type="CardDB" uid="18" />
+        <instance type="ActiveCards" uid="19">
+            <properties>
+                <width>10</width>
+                <height>1</height>
+                <depth>1</depth>
+            </properties>
+        </instance>
     </nonworld-instances>
     <effects />
 </c2layout>
