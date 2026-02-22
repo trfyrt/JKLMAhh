@@ -10,10 +10,9 @@
                 <condition id="-2" name="On start of layout" sid="981292364516920" type="System" />
             </conditions>
             <actions>
-                <action id="60" name="LoadJSON" sid="345669735655654" type="CardDB">
-                    <param id="0" name="JSON">&quot;cards.json&quot;</param>
-                    <param id="1" name="Reference point">0</param>
-                    <param id="2" name="Key {n}"></param>
+                <action id="1" name="Request project file" sid="345669735655654" type="AJAX">
+                    <param id="0" name="Tag">&quot;loadCards&quot;</param>
+                    <param id="1" name="File">cards.json</param>
                 </action>
             </actions>
         </event-block>
@@ -32,6 +31,21 @@
                 </condition>
             </conditions>
             <actions />
+        </event-block>
+        <event-block sid="703045484615898">
+            <conditions>
+                <condition id="0" name="On completed" sid="227005125270375" type="AJAX">
+                    <param id="0" name="Tag">&quot;loadCards&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="4" name="Load" sid="939644905661331" type="CardDict">
+                    <param id="0" name="JSON">AJAX.LastData</param>
+                </action>
+                <action id="0" name="Alert" sid="863301067395653" type="Browser">
+                    <param id="0" name="Message">CardDict.KeyCount</param>
+                </action>
+            </actions>
         </event-block>
     </events>
 </c2eventsheet>
