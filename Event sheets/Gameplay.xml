@@ -140,6 +140,10 @@
                 <action behavior="Bullet" id="3" name="Set angle of motion" sid="766426315617467" type="TxtDamageDealt">
                     <param id="0" name="Angle">270</param>
                 </action>
+                <action id="4" name="Set animation" sid="295821608526535" type="Enemy">
+                    <param id="0" name="Animation">&quot;Hit&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
             </actions>
         </event-block>
         <event-block sid="319364296154503">
@@ -238,23 +242,21 @@
                     <param id="1" name="Value">dt</param>
                 </action>
             </actions>
-            <sub-events>
-                <event-block sid="653092110259089">
-                    <conditions>
-                        <condition id="-7" name="Compare instance variable" sid="453629447878162" type="Enemy">
-                            <param id="0" name="Instance variable">atkInterval</param>
-                            <param id="1" name="Comparison">3</param>
-                            <param id="2" name="Value">3</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="4" name="Set animation" sid="932983987056050" type="Enemy">
-                            <param id="0" name="Animation">&quot;Attack&quot;</param>
-                            <param id="1" name="From">1</param>
-                        </action>
-                    </actions>
-                </event-block>
-            </sub-events>
+        </event-block>
+        <event-block sid="653092110259089">
+            <conditions>
+                <condition id="-7" name="Compare instance variable" sid="453629447878162" type="Enemy">
+                    <param id="0" name="Instance variable">atkInterval</param>
+                    <param id="1" name="Comparison">3</param>
+                    <param id="2" name="Value">3</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="4" name="Set animation" sid="932983987056050" type="Enemy">
+                    <param id="0" name="Animation">&quot;Attack&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+            </actions>
         </event-block>
         <event-block sid="208270085397907">
             <conditions>
@@ -267,7 +269,7 @@
             <actions>
                 <action id="-10" name="Set value" sid="319174765944404" type="Enemy">
                     <param id="0" name="Instance variable">atkInterval</param>
-                    <param id="1" name="Value">10</param>
+                    <param id="1" name="Value">Enemy.maxAtkInterval</param>
                 </action>
                 <action id="-11" name="Subtract from" sid="958443729494756" type="System">
                     <param id="0" name="Variable">playerHP</param>
@@ -279,6 +281,19 @@
                 </action>
                 <action id="0" name="Set text" sid="211583132553173" type="TxtPlayerHP">
                     <param id="0" name="Text">playerHP</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="606092860728928">
+            <conditions>
+                <condition id="4" name="On finished" sid="581311063575867" type="Enemy">
+                    <param id="0" name="Animation">&quot;Hit&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="4" name="Set animation" sid="737806705550763" type="Enemy">
+                    <param id="0" name="Animation">&quot;Idle&quot;</param>
+                    <param id="1" name="From">1</param>
                 </action>
             </actions>
         </event-block>
@@ -355,10 +370,6 @@
                                             <param id="0" name="Key">tempWord</param>
                                             <param id="1" name="Value">1</param>
                                         </action>
-                                        <action id="4" name="Set animation" sid="334359380139500" type="Enemy">
-                                            <param id="0" name="Animation">&quot;Hit&quot;</param>
-                                            <param id="1" name="From">1</param>
-                                        </action>
                                     </actions>
                                 </event-block>
                                 <event-block sid="574730817916283">
@@ -411,19 +422,6 @@
                     </actions>
                 </event-block>
             </sub-events>
-        </event-block>
-        <event-block sid="606092860728928">
-            <conditions>
-                <condition id="4" name="On finished" sid="581311063575867" type="Enemy">
-                    <param id="0" name="Animation">&quot;Hit&quot;</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="4" name="Set animation" sid="737806705550763" type="Enemy">
-                    <param id="0" name="Animation">&quot;Idle&quot;</param>
-                    <param id="1" name="From">1</param>
-                </action>
-            </actions>
         </event-block>
     </events>
 </c2eventsheet>

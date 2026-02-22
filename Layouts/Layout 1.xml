@@ -121,6 +121,7 @@
                         <isPoisoned>false</isPoisoned>
                         <atkInterval>10</atkInterval>
                         <atk>20</atk>
+                        <maxAtkInterval>10</maxAtkInterval>
                     </instance-variables>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -349,7 +350,6 @@
         <instance type="WordDict" uid="5" />
         <instance type="UsedWordDict" uid="15" />
         <instance type="CardDict" uid="17" />
-        <instance type="CardDB" uid="18" />
         <instance type="ActiveCards" uid="19">
             <properties>
                 <width>10</width>

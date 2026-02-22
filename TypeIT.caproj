@@ -15,7 +15,6 @@
         <plugin author="Scirra" id="Browser" version="1">Browser</plugin>
         <plugin author="Scirra" id="Dictionary" version="1">Dictionary</plugin>
         <plugin author="Scirra" id="Function" version="1">Function</plugin>
-        <plugin author="Yann Granjon" id="JSON" version="1">JSON</plugin>
         <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
         <plugin author="Scirra" id="Text" version="1">Text</plugin>
@@ -84,6 +83,7 @@
                 <instance-variable name="isPoisoned" sid="332800682763866" type="boolean" />
                 <instance-variable name="atkInterval" sid="752502468548666" type="number" />
                 <instance-variable name="atk" sid="232558524841777" type="number" />
+                <instance-variable name="maxAtkInterval" sid="672362987414952" type="number" />
             </instance-variables>
             <animation-folder>
                 <animation framecount="1" loop="0" name="Idle" pingpong="0" repeatcount="1" repeatto="0" sid="801873469299510" speed="5">
@@ -138,9 +138,6 @@
         </object-type>
         <object-type global="1" name="CardDict" sid="360550285740094">
             <plugin id="Dictionary" />
-        </object-type>
-        <object-type global="1" name="CardDB" sid="374900317529652">
-            <plugin id="JSON" />
         </object-type>
         <object-type global="1" name="ActiveCards" sid="916224545796465">
             <plugin id="Arr" />
