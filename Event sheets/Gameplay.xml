@@ -33,6 +33,11 @@
                 <action id="0" name="Set text" sid="631767094192708" type="TxtPlayerHP">
                     <param id="0" name="Text">playerHP</param>
                 </action>
+                <action id="5" name="Push" sid="585429193905468" type="ActiveCards">
+                    <param id="0" name="Where">0</param>
+                    <param id="1" name="Value">&quot;vowel_multiplier&quot;</param>
+                    <param id="2" name="Axis">0</param>
+                </action>
             </actions>
         </event-block>
         <event-block sid="954386205108401">
@@ -93,7 +98,7 @@
                 </action>
                 <action id="-9" name="Set value" sid="709565511932929" type="System">
                     <param id="0" name="Variable">damageDealt</param>
-                    <param id="1" name="Value">len(tempWord)+(comboCount*len(tempWord))</param>
+                    <param id="1" name="Value">((len(tempWord) + (comboCount * len(tempWord))) * damageMult) + bonusDamage</param>
                 </action>
                 <action id="0" name="Set text" sid="311291710246313" type="TxtCombo">
                     <param id="0" name="Text">&quot;x&quot;&amp;comboCount</param>
@@ -357,6 +362,10 @@
                                     <actions>
                                         <action id="0" name="Set text" sid="837091759353351" type="TxtFeedback">
                                             <param id="0" name="Text">&quot;BENAR&quot;</param>
+                                        </action>
+                                        <action id="0" name="Call function" sid="421163284792358" type="Function">
+                                            <param id="0" name="Name">&quot;ProcessCardTrigger&quot;</param>
+                                            <param id="1" name="Parameter {n}"></param>
                                         </action>
                                         <action id="0" name="Call function" sid="324311026626775" type="Function">
                                             <param id="0" name="Name">&quot;HitEnemy&quot;</param>

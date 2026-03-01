@@ -118,7 +118,7 @@
                     </properties>
                     <instance-variables>
                         <HP>100</HP>
-                        <isPoisoned>false</isPoisoned>
+                        <poisonTimer>0</poisonTimer>
                         <atkInterval>10</atkInterval>
                         <atk>20</atk>
                         <maxAtkInterval>10</maxAtkInterval>
@@ -357,6 +357,7 @@
                 <depth>1</depth>
             </properties>
         </instance>
+        <instance type="JSON" uid="18" />
     </nonworld-instances>
     <effects />
 </c2layout>
