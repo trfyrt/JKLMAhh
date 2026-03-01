@@ -1,10 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <c2eventsheet>
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
-    <name>Event sheet 1</name>
+    <name>Gameplay</name>
     <events>
+        <include>CardSystems</include>
+        <variable constant="0" name="wordMaxTimer" sid="195209979220943" static="0" type="number">10</variable>
+        <variable constant="0" name="wordTimer" sid="546050181516261" static="0" type="number">0</variable>
         <variable constant="0" name="totalDamage" sid="915866248904769" static="0" type="number">0</variable>
-        <variable constant="0" name="ComboMaxtime" sid="198395257047942" static="0" type="number">5</variable>
+        <variable constant="0" name="comboMaxtime" sid="198395257047942" static="0" type="number">5</variable>
         <variable comment="Combo time limit" constant="0" name="comboTimer" sid="531218001240322" static="0" type="number">0</variable>
         <variable constant="0" name="comboCount" sid="370298084383580" static="0" type="number">0</variable>
         <variable constant="0" name="damageDealt" sid="107878559824991" static="0" type="number">0</variable>
@@ -29,6 +32,11 @@
                 </action>
                 <action id="0" name="Set text" sid="631767094192708" type="TxtPlayerHP">
                     <param id="0" name="Text">playerHP</param>
+                </action>
+                <action id="5" name="Push" sid="585429193905468" type="ActiveCards">
+                    <param id="0" name="Where">0</param>
+                    <param id="1" name="Value">&quot;vowel_multiplier&quot;</param>
+                    <param id="2" name="Axis">0</param>
                 </action>
             </actions>
         </event-block>
@@ -73,6 +81,37 @@
                 </action>
             </actions>
         </event-block>
+        <event-block sid="277445710938723">
+            <conditions>
+                <condition id="0" name="On function" sid="152836397475241" type="Function">
+                    <param id="0" name="Name">&quot;CalculateDamage&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Add to" sid="579382877439996" type="System">
+                    <param id="0" name="Variable">comboCount</param>
+                    <param id="1" name="Value">0.5</param>
+                </action>
+                <action id="-9" name="Set value" sid="406474714816541" type="System">
+                    <param id="0" name="Variable">comboTimer</param>
+                    <param id="1" name="Value">ComboMaxtime</param>
+                </action>
+                <action id="-9" name="Set value" sid="709565511932929" type="System">
+                    <param id="0" name="Variable">damageDealt</param>
+                    <param id="1" name="Value">((len(tempWord) + (comboCount * len(tempWord))) * damageMult) + bonusDamage</param>
+                </action>
+                <action id="0" name="Set text" sid="311291710246313" type="TxtCombo">
+                    <param id="0" name="Text">&quot;x&quot;&amp;comboCount</param>
+                </action>
+                <action id="-10" name="Add to" sid="994750442408448" type="System">
+                    <param id="0" name="Variable">totalDamage</param>
+                    <param id="1" name="Value">damageDealt</param>
+                </action>
+                <action id="0" name="Set text" sid="527482134570841" type="TxtTotalDamage">
+                    <param id="0" name="Text">totalDamage</param>
+                </action>
+            </actions>
+        </event-block>
         <event-block sid="160853322381019">
             <conditions>
                 <condition id="0" name="On function" sid="798723742912344" type="Function">
@@ -105,6 +144,10 @@
                 </action>
                 <action behavior="Bullet" id="3" name="Set angle of motion" sid="766426315617467" type="TxtDamageDealt">
                     <param id="0" name="Angle">270</param>
+                </action>
+                <action id="4" name="Set animation" sid="295821608526535" type="Enemy">
+                    <param id="0" name="Animation">&quot;Hit&quot;</param>
+                    <param id="1" name="From">1</param>
                 </action>
             </actions>
         </event-block>
@@ -172,8 +215,98 @@
                 </action>
             </actions>
         </event-block>
-        <event-block sid="628803009692490">
+        <event-block sid="486099406145572">
             <conditions>
+                <condition id="-14" name="Compare variable" sid="494387546642722" type="System">
+                    <param id="0" name="Variable">comboTimer</param>
+                    <param id="1" name="Comparison">2</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Call function" sid="627555650560937" type="Function">
+                    <param id="0" name="Name">&quot;ComboReset&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="991061535701505">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="710687993331464" type="System" />
+            </conditions>
+            <actions>
+                <action id="-11" name="Subtract from" sid="719856645456591" type="System">
+                    <param id="0" name="Variable">comboTimer</param>
+                    <param id="1" name="Value">dt</param>
+                </action>
+                <action id="3" name="Set progress" sid="770362066716032" type="ComboBar">
+                    <param id="0" name="Value">comboTimer</param>
+                </action>
+                <action id="-12" name="Subtract from" sid="997758097146437" type="Enemy">
+                    <param id="0" name="Instance variable">atkInterval</param>
+                    <param id="1" name="Value">dt</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="653092110259089">
+            <conditions>
+                <condition id="-7" name="Compare instance variable" sid="453629447878162" type="Enemy">
+                    <param id="0" name="Instance variable">atkInterval</param>
+                    <param id="1" name="Comparison">3</param>
+                    <param id="2" name="Value">3</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="4" name="Set animation" sid="932983987056050" type="Enemy">
+                    <param id="0" name="Animation">&quot;Attack&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="208270085397907">
+            <conditions>
+                <condition id="-7" name="Compare instance variable" sid="295427568785434" type="Enemy">
+                    <param id="0" name="Instance variable">atkInterval</param>
+                    <param id="1" name="Comparison">3</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="319174765944404" type="Enemy">
+                    <param id="0" name="Instance variable">atkInterval</param>
+                    <param id="1" name="Value">Enemy.maxAtkInterval</param>
+                </action>
+                <action id="-11" name="Subtract from" sid="958443729494756" type="System">
+                    <param id="0" name="Variable">playerHP</param>
+                    <param id="1" name="Value">Enemy.atk</param>
+                </action>
+                <action id="4" name="Set animation" sid="544119471208200" type="Enemy">
+                    <param id="0" name="Animation">&quot;Idle&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action id="0" name="Set text" sid="211583132553173" type="TxtPlayerHP">
+                    <param id="0" name="Text">playerHP</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="606092860728928">
+            <conditions>
+                <condition id="4" name="On finished" sid="581311063575867" type="Enemy">
+                    <param id="0" name="Animation">&quot;Hit&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="4" name="Set animation" sid="737806705550763" type="Enemy">
+                    <param id="0" name="Animation">&quot;Idle&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block any="1" bookmark="1" sid="628803009692490">
+            <conditions>
+                <condition id="0" name="On key pressed" sid="695924716286359" type="Keyboard">
+                    <param id="0" name="Key">32</param>
+                </condition>
                 <condition id="0" name="On key pressed" sid="345981080283694" type="Keyboard">
                     <param id="0" name="Key">13</param>
                 </condition>
@@ -229,6 +362,10 @@
                                     <actions>
                                         <action id="0" name="Set text" sid="837091759353351" type="TxtFeedback">
                                             <param id="0" name="Text">&quot;BENAR&quot;</param>
+                                        </action>
+                                        <action id="0" name="Call function" sid="421163284792358" type="Function">
+                                            <param id="0" name="Name">&quot;ProcessCardTrigger&quot;</param>
+                                            <param id="1" name="Parameter {n}"></param>
                                         </action>
                                         <action id="0" name="Call function" sid="324311026626775" type="Function">
                                             <param id="0" name="Name">&quot;HitEnemy&quot;</param>
@@ -294,66 +431,6 @@
                     </actions>
                 </event-block>
             </sub-events>
-        </event-block>
-        <event-block sid="277445710938723">
-            <conditions>
-                <condition id="0" name="On function" sid="152836397475241" type="Function">
-                    <param id="0" name="Name">&quot;CalculateDamage&quot;</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="-10" name="Add to" sid="579382877439996" type="System">
-                    <param id="0" name="Variable">comboCount</param>
-                    <param id="1" name="Value">1</param>
-                </action>
-                <action id="-9" name="Set value" sid="406474714816541" type="System">
-                    <param id="0" name="Variable">comboTimer</param>
-                    <param id="1" name="Value">ComboMaxtime</param>
-                </action>
-                <action id="-9" name="Set value" sid="709565511932929" type="System">
-                    <param id="0" name="Variable">damageDealt</param>
-                    <param id="1" name="Value">comboCount*len(tempWord)</param>
-                </action>
-                <action id="0" name="Set text" sid="311291710246313" type="TxtCombo">
-                    <param id="0" name="Text">&quot;x&quot;&amp;comboCount</param>
-                </action>
-                <action id="-10" name="Add to" sid="994750442408448" type="System">
-                    <param id="0" name="Variable">totalDamage</param>
-                    <param id="1" name="Value">damageDealt</param>
-                </action>
-                <action id="0" name="Set text" sid="527482134570841" type="TxtTotalDamage">
-                    <param id="0" name="Text">totalDamage</param>
-                </action>
-            </actions>
-        </event-block>
-        <event-block sid="991061535701505">
-            <conditions>
-                <condition id="-1" name="Every tick" sid="710687993331464" type="System" />
-            </conditions>
-            <actions>
-                <action id="-11" name="Subtract from" sid="719856645456591" type="System">
-                    <param id="0" name="Variable">comboTimer</param>
-                    <param id="1" name="Value">dt</param>
-                </action>
-                <action id="3" name="Set progress" sid="770362066716032" type="ComboBar">
-                    <param id="0" name="Value">comboTimer</param>
-                </action>
-            </actions>
-        </event-block>
-        <event-block sid="486099406145572">
-            <conditions>
-                <condition id="-14" name="Compare variable" sid="494387546642722" type="System">
-                    <param id="0" name="Variable">comboTimer</param>
-                    <param id="1" name="Comparison">2</param>
-                    <param id="2" name="Value">0</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="0" name="Call function" sid="627555650560937" type="Function">
-                    <param id="0" name="Name">&quot;ComboReset&quot;</param>
-                    <param id="1" name="Parameter {n}"></param>
-                </action>
-            </actions>
         </event-block>
     </events>
 </c2eventsheet>

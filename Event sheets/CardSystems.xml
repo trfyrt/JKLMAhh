@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>CardSystems</name>
+    <events>
+        <variable constant="0" name="damageMult" sid="641644612511821" static="0" type="number">1</variable>
+        <variable constant="0" name="bonusDamage" sid="162511660067451" static="0" type="number">0</variable>
+        <event-block sid="705331115844122">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="981292364516920" type="System" />
+            </conditions>
+            <actions>
+                <action id="1" name="Request project file" sid="345669735655654" type="AJAX">
+                    <param id="0" name="Tag">&quot;loadCards&quot;</param>
+                    <param id="1" name="File">cards.json</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="806380923606106">
+            <conditions>
+                <condition id="0" name="On function" sid="766500667875800" type="Function">
+                    <param id="0" name="Name">&quot;ProcessCardTrigger&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="408577325551347" type="System">
+                    <param id="0" name="Variable">damageMult</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-9" name="Set value" sid="123637789502270" type="System">
+                    <param id="0" name="Variable">bonusDamage</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="598481262100935">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="902788284116499" type="System">
+                            <param id="0" name="Object">ActiveCards</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="809557091811577">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="511268660839273" type="System">
+                                    <param id="0" name="First value">ActiveCards.At(loopindex)</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">&quot;vowel_multiplier&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Add to" sid="760805771710676" type="System">
+                                    <param id="0" name="Variable">damageMult</param>
+                                    <param id="1" name="Value">((len(tempWord) - len(replace(replace(replace(replace(replace(tempWord, &quot;a&quot;, &quot;&quot;), &quot;e&quot;, &quot;&quot;), &quot;i&quot;, &quot;&quot;), &quot;o&quot;, &quot;&quot;), &quot;u&quot;, &quot;&quot;))) * 5)</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="920627296686066">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="121995060310888" type="System">
+                                    <param id="0" name="First value">ActiveCards.At(loopindex)</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">&quot;short_word_specialist&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="737275233617244">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="269325048691728" type="System">
+                                            <param id="0" name="Variable">tempWord</param>
+                                            <param id="1" name="Comparison">3</param>
+                                            <param id="2" name="Value">5</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Add to" sid="490235847308475" type="System">
+                                            <param id="0" name="Variable">damageMult</param>
+                                            <param id="1" name="Value">0.25</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="596975502296012">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="257772320595853" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-11" name="Subtract from" sid="912947106990559" type="System">
+                                            <param id="0" name="Variable">damageMult</param>
+                                            <param id="1" name="Value">0.15</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="126861432194834">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="141826360440197" type="System">
+                                    <param id="0" name="First value">ActiveCards.At(loopindex)</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">&quot;long_word_master&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="698543859090070">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="795348889584732" type="System">
+                                            <param id="0" name="Variable">tempWord</param>
+                                            <param id="1" name="Comparison">4</param>
+                                            <param id="2" name="Value">5</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Add to" sid="827662285958702" type="System">
+                                            <param id="0" name="Variable">damageMult</param>
+                                            <param id="1" name="Value">0.25</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="992709082065634">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="353527146806275" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-11" name="Subtract from" sid="808977119006525" type="System">
+                                            <param id="0" name="Variable">damageMult</param>
+                                            <param id="1" name="Value">0.15</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="768850863343301">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="490599988560542" type="System">
+                                    <param id="0" name="First value">ActiveCards.At(loopindex)</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">&quot;hard_r_pass&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="698290450463048">
+                                    <conditions />
+                                    <actions />
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="124947487687363">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="955501823081180" type="System">
+                                    <param id="0" name="First value">ActiveCards.At(loopindex)</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">&quot;toxic_vocab&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="403629768850958">
+            <conditions>
+                <condition id="-12" name="Repeat" sid="414197402085394" type="System">
+                    <param id="0" name="Count">ActiveCards.Width</param>
+                </condition>
+            </conditions>
+            <actions />
+        </event-block>
+        <event-block sid="703045484615898">
+            <conditions>
+                <condition id="0" name="On completed" sid="227005125270375" type="AJAX">
+                    <param id="0" name="Tag">&quot;loadCards&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="4" name="Load" sid="939644905661331" type="CardDict">
+                    <param id="0" name="JSON">AJAX.LastData</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

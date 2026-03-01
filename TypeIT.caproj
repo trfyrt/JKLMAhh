@@ -11,9 +11,11 @@
     <saved-with-version>28000</saved-with-version>
     <used-plugins>
         <plugin author="Scirra" id="AJAX" version="1">AJAX</plugin>
+        <plugin author="Scirra" id="Arr" version="1">Array</plugin>
         <plugin author="Scirra" id="Browser" version="1">Browser</plugin>
         <plugin author="Scirra" id="Dictionary" version="1">Dictionary</plugin>
         <plugin author="Scirra" id="Function" version="1">Function</plugin>
+        <plugin author="Yann Granjon" id="JSON" version="1">JSON</plugin>
         <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
         <plugin author="Scirra" id="Text" version="1">Text</plugin>
@@ -79,11 +81,27 @@
             <plugin id="Sprite" />
             <instance-variables>
                 <instance-variable name="HP" sid="983414030671741" type="number" />
-                <instance-variable name="isPoisoned" sid="332800682763866" type="boolean" />
+                <instance-variable name="poisonTimer" sid="592618081160607" type="number" />
+                <instance-variable name="atkInterval" sid="752502468548666" type="number" />
+                <instance-variable name="atk" sid="232558524841777" type="number" />
+                <instance-variable name="maxAtkInterval" sid="672362987414952" type="number" />
             </instance-variables>
             <animation-folder>
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="801873469299510" speed="5">
-                    <frame duration="1" hotspotX="0.481481" hotspotY="0.572289" />
+                <animation framecount="1" loop="0" name="Idle" pingpong="0" repeatcount="1" repeatto="0" sid="801873469299510" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.995049" y="0.915" />
+                            <point x="0.00495049" y="0.915" />
+                            <point x="0.00495049" y="0.085" />
+                            <point x="0.995049" y="0.085" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+                <animation framecount="1" loop="0" name="Hit" pingpong="0" repeatcount="1" repeatto="0" sid="139393368012005" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+                <animation framecount="1" loop="0" name="Attack" pingpong="0" repeatcount="1" repeatto="0" sid="453896145742477" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
                 </animation>
             </animation-folder>
         </object-type>
@@ -119,13 +137,23 @@
         <object-type name="TxtTotalDamage" sid="368752952098809">
             <plugin id="Text" />
         </object-type>
+        <object-type global="1" name="CardDict" sid="360550285740094">
+            <plugin id="Dictionary" />
+        </object-type>
+        <object-type global="1" name="ActiveCards" sid="916224545796465">
+            <plugin id="Arr" />
+        </object-type>
+        <object-type global="1" name="JSON" sid="475121829045717">
+            <plugin id="JSON" />
+        </object-type>
     </object-folder>
     <families />
     <layout-folder>
         <layout>Layout 1.xml</layout>
     </layout-folder>
     <event-folder>
-        <event-sheet>Event sheet 1.xml</event-sheet>
+        <event-sheet>Gameplay.xml</event-sheet>
+        <event-sheet>CardSystems.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Keyboard" uid="3" />
@@ -145,5 +173,6 @@
             <file name="loading-logo.png" />
         </file-folder>
         <file name="dictionary.json" />
+        <file name="cards.json" />
     </files-folder>
 </c2project>
